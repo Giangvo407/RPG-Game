@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= character.name %></title>
+</head>
+
+<body>
+    <%- include('../partials/_navbar.ejs') %>
+
+    <h1><%= character.name%>'s Status</h1>
+
+    <!-- character Details -->
+    <h2>Details</h2>
+    <p>Str: <%= character.str %></p>
+    <p>Def: <%= character.def %></p>
+    <p>HP: <%= character.hitPoints %></p>
+    <p>Level: <%= character.level %></p>
+
+    <!-- Favoriting Details -->
+    <h2>Favorites</h2>
+    <p>Favorited by <%= character.favoritedByUsers.length %> people.</p>
+    <% if (userHasFavorited) { %>
+    <p>You've favorited this character!</p>
+    <form action="/characters/<%= character._id %>/favorited-by/<%= user._id %>?_method=DELETE" method="POST">
+        <button type="submit">Unfavorite it</button>
+    </form>
+    <% } else { %>
+    <p>You haven't favorited this character.</p>
+    <form action="/characters/<%= character._id %>/favorited-by/<%= user._id %>" method="POST">
+        <button type="submit">Favorite it!</button>
+    </form>
+    <% } %>
+
+    <!-- Owner Details -->
+    <h2>Owner</h2>
+    <% if (character.owner._id.equals(user._id)) { %>
+    <p>You own this!</p>
+    <a href="/characters/<%= character._id %>/edit">Edit this character</a>
+    <form action="/characters/<%= character._id %>?_method=DELETE" method="POST">
+        <button type="submit">Delete this character</button>
+    </form>
+    <% } else { %>
+    <p>You don't own this, <%= character.owner.username %> does!</p>
+    <% } %>
+    
+</body>
+</html>

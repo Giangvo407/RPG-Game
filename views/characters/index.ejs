@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Characters</title>
+</head>
+
+<body>
+    <%- include('../partials/_navbar.ejs') %>
+
+    <h1>Here's all the Characters</h1>
+
+    <ul>
+        <% if (characters.length > 0) { %>
+            <% characters.forEach((character) => { %>
+                <li>
+                    A <%= character.name %> is owned by
+                    <a href="/characters/owner/<%= character.owner._id %>"><%= character.owner.username %></a>. |
+                    <a href="/characters/<%= character._id %>">View more details.</a>
+                </li>
+            <% }) %>
+        <% } else { %>
+            <li>No characters found. <a href="/createCharacter">Create a character</a>.</li>
+        <% } %>
+    </ul>
+
+    <a href="/characters/new">Create a new character</a>
+    <br>
+
+    <p><a href="/admin">Get into the VIP Users Only lounge!</a></p>
+</body>
+
+</html>

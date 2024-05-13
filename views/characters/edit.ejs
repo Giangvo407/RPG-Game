@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit a <%= character.name%></title>
+</head>
+
+<body>
+    <%- include('../partials/_navbar.ejs') %>
+    <h1>Edit a <%= character.name%>!</h1>
+
+    <form action="/characters/<%= character._id %>?_method=PUT" method="POST">
+        <label for="name">Character's name:</label>
+        <input type="text" name="name" id="name" value="<%= character.name%>" />
+        <button type="submit">Update Character</button>
+    </form>
+</body>
+
+</html>
