@@ -36,6 +36,8 @@ const isAdmin = require('./middleware/isAdmin.js');
 const authController = require('./controllers/auth.js')
 const usersController = require('./controllers/users.js')
 const charactersController = require('./controllers/characters.js');
+const monstersController = require('./controllers/monsters.js');
+const adminController = require('./controllers/admin.js')
 
 
 
@@ -55,12 +57,7 @@ app.use(session({
   saveUninitialized: true,
 }))
 
-app.use(passUserToView)
-app.use('/auth', authController);
-app.use(isSignedIn);
-app.use('/users', usersController);
-app.use('/characters', charactersController);
-app.use(isAdmin);
+
 
 
 /* Routes
@@ -70,10 +67,18 @@ app.get('/', function (req, res) {
   res.render('index', { user: req.session.user })
 })
 
-
+app.use(passUserToView)
+app.use('/auth', authController);
+app.use(isSignedIn);
+app.use('/users', usersController);
+app.use('/characters', charactersController);
+app.use('/monsters', monstersController);
+app.use('/admins', adminController)
+app.use(isAdmin);
+app.use('/admins', adminController)
 
 // Protected route: Only accessible by authorized users
-app.get('/admin', isAdmin, (req, res) => {
+app.get('/admins', isAdmin, (req, res) => {
 
    res.render('./users/admin');
   });

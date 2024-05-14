@@ -10,10 +10,13 @@
 <body>
     <%- include('../partials/_navbar.ejs') %>
 
-    <form action="/admin/new" method="POST">
-        <label for="name">Character's name:</label>
+    <form action="/monsters" method="POST">
+        <label for="name">Monster's name:</label>
         <input type="text" name="name" id="name" required />
-        <button type="submit">Add Character</button>
+       
+       
+        <br>
+        <button type="submit">Add Monster</button>
     </form>
 </body>
 

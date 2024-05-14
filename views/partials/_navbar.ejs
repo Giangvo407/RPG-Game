@@ -1,9 +1,12 @@
 <nav>
     <a href="/">Home</a>
-    <% if(user) { %>
+    <% if (user && user.isAdmin) { %>
+        <a href="/auth/sign-out">Sign Out</a>
+        <a href="/admins">Admin</a>
+    <% } else if(user) { %>
         <a href="/auth/sign-out">Sign Out</a>
     <% } else { %>
         <a href="/auth/sign-in">Sign In</a>
         <a href="/auth/sign-up">Sign Up</a>
     <% } %>
-  </nav>
+</nav>

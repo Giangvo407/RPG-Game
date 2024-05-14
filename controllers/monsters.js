@@ -1,27 +1,25 @@
+const Monster = require('../models/monster.js');
 const express = require('express')
 const router = express.Router()
-const Monster = require('../models/monster.js');
 
-// Routes
 
-// Index
+/* Routes
+-------------------------------------------------- */
+// Index route: Display all characters
 router.get('/', async (req, res) => {
-     let allMonsters = await Monsters.find()
-     res.locals.title = "Monster Index"
-     res.render('monsters/index', { monsters: allMonsters })
+    const allMonsters = await Monster.find()
+    res.render('monsters/index', { monsters: allMonsters })
 })
 
-// Show
+// Index route: Display all characters for a specific user
 router.get('/:monsterId', async (req, res) => {
-     try {
-          otherMonster = await Monster.findById(req.params.monsterId)
-          res.locals.otherMonster = otherMonster
-          res.locals.title = `${otherMonster.username}'s player`
-          res.render('monsters/show')
-     } catch(error) {
-          console.log(error)
-          res.redirect('/monsters')
-     }
+    const userMonster = await Monster
+        .find({ owner: req.params.userId })
+    res.render('monsters/index', { monsters: userMonster })
 })
 
+// New route
+router.get('/new', (req, res) => {
+    res.render('monsters/new')
+})
 module.exports = router;

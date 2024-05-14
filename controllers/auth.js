@@ -36,13 +36,6 @@ router.post('/sign-up', async (req, res) => {
     const hashedPassword = bcrypt.hashSync(req.body.password, 10);
     req.body.password = hashedPassword;
   
-  //   if (req.body.isAdmin) {
-  //     adminSecret !== process.env.SESSION_SECRET;
-  //     req.body.isAdmin = true;
-  // } else {
-  //     req.body.isAdmin = false;
-  // }
-    // All ready to create the new user!
     const { username, password, adminSecret } = req.body;
   
     // Check if the admin secret is correct

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Monsters</title>
+</head>
+
+<body>
+    <%- include('../partials/_navbar.ejs') %>
+
+    <h1>Here's all the Monsters</h1>
+
+    <ul>
+        <% if (monsters.length > 0) { %>
+            <% monsters.forEach((monster) => { %>
+                <li>
+                    A <%= monster.name %> is owned by
+                    <a href="/monsters/owner/<%= monster.owner._id %>"><%= monster.owner.username %></a>. |
+                    <a href="/monsters/<%= monster._id %>">View more details.</a>
+                </li>
+            <% }) %>
+        <% } else { %>
+            <li>No monsters found. 
+        <% } %>
+    </ul>
+</body>
+
+</html>
