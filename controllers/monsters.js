@@ -5,21 +5,22 @@ const router = express.Router()
 
 /* Routes
 -------------------------------------------------- */
-// Index route: Display all characters
+// Index route: Display all Monsters
 router.get('/', async (req, res) => {
     const allMonsters = await Monster.find()
     res.render('monsters/index', { monsters: allMonsters })
 })
 
-// Index route: Display all characters for a specific user
+// Show
 router.get('/:monsterId', async (req, res) => {
-    const userMonster = await Monster
-        .find({ owner: req.params.userId })
-    res.render('monsters/index', { monsters: userMonster })
-})
+    try {
+        const foundMonster = await Monster
+            .findById(req.params.monsterId)
+        res.render('monsters/show', { monster: foundMonster});
+    } catch (error) {
+        console.log(error);
+        res.redirect('/monsters');
+    }
+});
 
-// New route
-router.get('/new', (req, res) => {
-    res.render('monsters/new')
-})
 module.exports = router;

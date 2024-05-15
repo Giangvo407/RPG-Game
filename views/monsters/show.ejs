@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= monster.name %></title>
+</head>
+
+<body>
+    <%- include('../partials/_navbar.ejs') %>
+
+    <h1><%= monster.rarity %> <%= monster.name%>'s Status</h1>
+
+    <!-- monster Details -->
+    <h2>Details</h2>
+        <p>Strength: <%= monster.strength %></p>
+        <p>Hit Points: <%= monster.hitPoints %></p>
+        <p>Defense: <%= monster.defense %></p>
+        <p>Experience: <%= monster.experience %></p>
+        <p>Location: <%= monster.location %></p>
+        
+
+        <form action="/admins/monsters/<%= monster._id %>?_method=DELETE" method="POST">
+        <button type="submit">Delete this monster</button>
+        </form>
+        <br>
+        <a href="/admins/monsters/<%= monster._id %>/edit">Edit this monster</a>
+        
+    
+</body>
+</html>

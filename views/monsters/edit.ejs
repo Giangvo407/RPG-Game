@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Monster</title>
+</head>
+<body>
+    <%- include('../partials/_navbar.ejs') %>
+    <h1>Edit Monster</h1>
+    <form action="/admins/monsters/<%= monster._id %>/edit" method="POST">
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" value="<%= monster.name %>" required>
+        </div>
+        <div>
+            <label for="strength">Strength:</label>
+            <input type="number" id="strength" name="strength" value="<%= monster.strength %>" required>
+        </div>
+        <div>
+            <label for="defense">Defense:</label>
+            <input type="number" id="defense" name="defense" value="<%= monster.defense %>" required>
+        </div>
+        <div>
+            <label for="experience">Experience:</label>
+            <input type="number" id="experience" name="experience" value="<%= monster.experience %>" required>
+        </div>
+        <div>
+            <label for="loot">Loot:</label>
+            <select name="loot" id="loot" multiple class="selectBox">
+                <% inventory.forEach(item => { %>
+                    <option value="<%= item._id %>"><%= item.name %></option>
+                <% }); %>
+            </select>
+        </div>
+        <div>
+            <label for="gold">Gold:</label>
+            <input type="number" id="gold" name="gold" value="<%= monster.gold %>"required>
+        </div>
+        <div>
+            <label for="rarity">Rarity:</label>
+            <select id="rarity" name="rarity" required>
+                <option value="Common">Common</option>
+                <option value="Uncommon">Uncommon</option>
+                <option value="Rare">Rare</option>
+                <option value="Epic">Epic</option>
+                <option value="Legendary">Legendary</option>
+            </select>
+        </div>
+        <div>
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location" value="<%= monster.location %>">
+        </div>
+        <div>
+            <label for="imageUrl">Image URL:</label>
+            <input type="text" id="imageUrl" name="imageUrl">
+        </div>
+        <button type="submit">Update</button>
+    </form>
+</body>
+</html>

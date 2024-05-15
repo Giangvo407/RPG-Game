@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= inventory.name %></title>
+</head>
+
+<body>
+    <%- include('../partials/_navbar.ejs') %>
+
+    <h1><%= inventory.name%>'s Status</h1>
+
+    <h2>Details</h2>
+        <p>Strength: <%= inventory.strengthModifier %></p>
+        <p>Defense: <%= inventory.defenseModifier %></p>
+        <p>Heals:  <%= inventory.healingPower %></p>
+        
+        
+
+        <form action="/admins/inventorys/<%= inventory._id %>?_method=DELETE" method="POST">
+        <button type="submit">Delete this inventory</button>
+        </form>
+
+        <a href="/admins/inventorys/<%= inventory._id %>/edit">Edit this inventory</a>
+    
+</body>
+</html>

@@ -7,7 +7,6 @@ const User = require('../models/user.js');
 // Index
 router.get('/', async (req, res) => {
      let users = await User.find()
-     res.locals.title = "User Pantries"
      res.render('users/index', { users: users })
 })
 

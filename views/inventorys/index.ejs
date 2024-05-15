@@ -4,23 +4,23 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>All Monsters</title>
+    <title>All Inventory</title>
 </head>
 
 <body>
     <%- include('../partials/_navbar.ejs') %>
 
-    <h1>Here's all the Monsters</h1>
+    <h1>Here's all the Inventory</h1>
 
     <ul>
-        <% if (monsters.length > 0) { %>
-            <% monsters.forEach((monster) => { %>
+        <% if (inventorys.length > 0) { %>
+            <% inventorys.forEach((inventory) => { %>
                 <li>
-                    <a href="/monsters/<%= monster._id %>"><%= monster.name %> </a>
+                    <a href="/inventorys/<%= inventory._id %>"><%= inventory.name %> </a>
                 </li>
             <% }) %>
         <% } else { %>
-            <li>No monsters found. 
+            <li>No inventory found. 
         <% } %>
     </ul>
 </body>

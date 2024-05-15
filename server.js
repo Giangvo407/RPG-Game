@@ -37,6 +37,8 @@ const authController = require('./controllers/auth.js')
 const usersController = require('./controllers/users.js')
 const charactersController = require('./controllers/characters.js');
 const monstersController = require('./controllers/monsters.js');
+const inventorysController = require('./controllers/inventorys.js');
+const shopsController = require('./controllers/shops.js');
 const adminController = require('./controllers/admin.js')
 
 
@@ -73,6 +75,8 @@ app.use(isSignedIn);
 app.use('/users', usersController);
 app.use('/characters', charactersController);
 app.use('/monsters', monstersController);
+app.use('/inventorys', inventorysController);
+app.use('/shops', shopsController);
 app.use('/admins', adminController)
 app.use(isAdmin);
 app.use('/admins', adminController)

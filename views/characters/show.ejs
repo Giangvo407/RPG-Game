@@ -14,9 +14,20 @@
 
     <!-- character Details -->
     <h2>Details</h2>
-    <p>Str: <%= character.str %></p>
-    <p>Def: <%= character.def %></p>
-    <p>HP: <%= character.hitPoints %></p>
+    <p>Strength: <%= character.strength %></p>
+    <p>Defense: <%= character.defense %></p>
+    <p>HP: <%= character.maxHitPoints %>/<%= character.minHitPoints%></p>
+    <p>Level: <%= character.level %></p>
+    <p>Gold: <%= character.gold %></p>
+    <p>Inventory: <% if (character.inventory.length > 0) { %>
+        <% character.inventory.forEach((item) => { %>
+            <li>
+                %= item.name %> </a>
+            </li>
+        <% }) %>
+    <% } else { %>
+        <li>No item found. 
+    <% } %></p>
     <p>Level: <%= character.level %></p>
 
     <!-- Favoriting Details -->

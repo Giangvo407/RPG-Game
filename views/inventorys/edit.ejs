@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Inventory</title>
+</head>
+<body>
+    <%- include('../partials/_navbar.ejs') %>
+    <h1>Edit Inventory</h1>
+    <form action="/admins/inventorys/<%= inventory._id %>/edit" method="POST">
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" value="<%= inventory.name %>" required>
+        </div>
+        <div>
+            <label for="type">Type:</label>
+            <select id="type" name="type" value="<%= inventory.type %>" required>
+                <option value="Weapon">Weapon</option>
+                <option value="Armor">Armor</option>
+                <option value="Potion">Potion</option>
+            </select>
+        </div>
+        <div id="strengthModifierGroup" class="hidden">
+            <label for="strengthModifier">Strength Modifier:</label>
+            <input type="number" id="strengthModifier" name="strengthModifier" value="<%= inventory.strengthModifier %>">
+        </div>
+        <div id="defenseModifierGroup" class="hidden">
+            <label for="defenseModifier">Defense Modifier:</label>
+            <input type="number" id="defenseModifier" name="defenseModifier" value="<%= inventory.defenseModifier %>">
+        </div>
+        <!-- <div>
+            <label for="isEquipped">Is Equipped:</label>
+            <input type="checkbox" id="isEquipped" name="isEquipped">
+        </div> -->
+        <div id="healingPowerGroup" class="hidden">
+            <label for="healingPower">Healing Power:</label>
+            <input type="number" id="healingPower" name="healingPower" value="<%= inventory.healingPower %>">
+        </div>
+        <div>
+            <label for="imageUrl">Image URL:</label>
+            <input type="text" id="imageUrl" name="imageUrl">
+        </div>
+        <button type="submit">Update Item</button>
+    </form>
+
+    <script>
+        const typeSelect = document.getElementById('type');
+        const strengthModifierGroup = document.getElementById('strengthModifierGroup');
+        const defenseModifierGroup = document.getElementById('defenseModifierGroup');
+        const healingPowerGroup = document.getElementById('healingPowerGroup');
+
+        typeSelect.addEventListener('change', () => {
+            if (typeSelect.value === 'Potion') {
+                strengthModifierGroup.classList.add('hidden');
+                defenseModifierGroup.classList.add('hidden');
+                healingPowerGroup.classList.remove('hidden');
+            } else {
+                strengthModifierGroup.classList.remove('hidden');
+                defenseModifierGroup.classList.remove('hidden');
+                healingPowerGroup.classList.add('hidden');
+            }
+        });
+    </script>
+    </form>
+</body>
+</html>
