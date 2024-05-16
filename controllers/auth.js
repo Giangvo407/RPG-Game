@@ -85,7 +85,8 @@ router.post('/sign-in', async (req, res) => {
       _id: userInDatabase._id,
       isAdmin: userInDatabase.isAdmin,
     };
-    res.redirect('/characters');
+    // req.session.characterId = characterId;
+    res.redirect('/characters',);
   } catch (error) {
     console.log(error);
     res.redirect('/');

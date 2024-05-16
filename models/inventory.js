@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const InventorySchema = new Schema({
   name: { type: String, required: true },
-  type: { type: String, required: true }, // Weapon, Armor, Potion, etc.
+  type: { type: String, required: true },
   strengthModifier: { type: Number, default: 0 },
   defenseModifier: { type: Number, default: 0 },
   isEquipped: { type: Boolean, default: false },

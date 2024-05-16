@@ -11,7 +11,6 @@ const router = express.Router();
 // create Monster route
 router.get('/monsters/new', async (req, res) => {
     const inventory = await Inventory.find({})
-    console.log(inventory)
     res.render('monsters/new.ejs', {inventory})
 })
 
@@ -20,10 +19,9 @@ router.post('/monsters/new', async (req, res) => {
     try {
         const { name, hitPoints, strength, defense, experience, loot, gold, rarity,location, imageUrl } = req.body;
         const newMonster = new Monster({ name, hitPoints, strength, defense, experience, loot, gold, rarity, location, imageUrl});
-        console.log(newMonster)
         await newMonster.save()
         // await Monster.create(req.body);
-        res.redirect('/monsters'); // Redirect to the list of monsters after creation
+        res.redirect('/monsters');
       } catch (error) {
         res.status(500).send('Error creating monster');
       }
@@ -68,7 +66,7 @@ router.post('/inventorys/new', async (req, res) => {
             strengthModifier,
             defenseModifier,
             isEquipped,
-            healingPower, // This field will be undefined if the type is not 'Potion'
+            healingPower,
             imageUrl
         });
         await newItem.save();

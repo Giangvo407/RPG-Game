@@ -37,15 +37,12 @@ router.get('/new', (req, res) => {
 // Show route
 router.get('/:characterId', async (req, res) => {
     try {
-        // Get character and owner data
         const foundCharacter = await Character
             .findById(req.params.characterId)
             .populate('owner')
-        // Get favorited data
         const userHasFavorited = foundCharacter.favoritedByUsers.some((user) =>
             user.equals(req.session.user._id)
         );
-        // Render character, owner, and favoriting data
         res.render('characters/show', {
             character: foundCharacter,
             userHasFavorited: userHasFavorited
@@ -73,15 +70,12 @@ router.delete('/:characterId', async (req, res) => {
 // Edit route
 router.get('/:characterId/edit', async (req, res) => {
     const foundCharacter = await Character.findById(req.params.characterId)
-    // const userHasFavorited = foundCharacter.favoritedByUsers.some((user) =>
-    //     user.equals(req.session.user._id)
-    // );
+
     res.render('characters/edit', { character: foundCharacter})
 })
 
 // Put route
 router.put('/:characterId', async (req, res) => {
-    console.log(req.body)
     const updatedCharacter = await Character.findByIdAndUpdate(
         req.params.characterId,
         req.body,
@@ -109,7 +103,6 @@ router.post('/:characterId/favorited-by/:userId', async (req, res) => {
 // Unfavoriting route
 router.delete('/:characterId/favorited-by/:userId', async (req, res) => {
     try {
-        // remove the userId fromt he favoritedByUsers array
         await Character.findByIdAndUpdate(req.params.characterId, {
             $pull: { favoritedByUsers: req.params.userId },
         });

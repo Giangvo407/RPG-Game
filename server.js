@@ -35,10 +35,12 @@ const isAdmin = require('./middleware/isAdmin.js');
 // import controllers
 const authController = require('./controllers/auth.js')
 const usersController = require('./controllers/users.js')
+const selectCharacterController = require('./controllers/select-characters.js');
 const charactersController = require('./controllers/characters.js');
 const monstersController = require('./controllers/monsters.js');
 const inventorysController = require('./controllers/inventorys.js');
 const shopsController = require('./controllers/shops.js');
+const battlesController = require('./controllers/battles.js');
 const adminController = require('./controllers/admin.js')
 
 
@@ -77,6 +79,8 @@ app.use('/characters', charactersController);
 app.use('/monsters', monstersController);
 app.use('/inventorys', inventorysController);
 app.use('/shops', shopsController);
+app.use('/select-character', selectCharacterController);
+app.use('/battle', battlesController);
 app.use('/admins', adminController)
 app.use(isAdmin);
 app.use('/admins', adminController)
