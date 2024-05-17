@@ -1,0 +1,138 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #000000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url(https://img.freepik.com/premium-photo/mystical-melancholy-rundown-16bit-sprite-tree-house-pixel-art_983420-40292.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  /* Navigation bar styling */
+  #nav {
+    width: 100%;
+    background-color: #333;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    padding: 14px 0;
+  }
+  
+  #nav a {
+    color: rgb(255, 251, 251);
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  #nav a:hover {
+    background-color: #575757;
+  }
+  
+  
+  h1, h2 {
+    margin-top: 20px;
+    font-size: 24px;
+    background: rgb(51, 255, 0);
+  }
+
+  p, li {
+    margin-top: 15px;
+    font-size: 15px;
+    background: rgb(51, 255, 0);
+  }
+
+  
+  form {
+    background: rgb(178, 64, 64);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    width: 300px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  
+  input[type="text"],
+  input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  button {
+    width: 100%;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #575757;
+  }
+
+  .character-list {
+    list-style-type: none;
+    width: 100%;
+    max-width: 600px;
+    margin: 20px 0;
+    padding: 0;
+    background-color: rgba(61, 194, 97, 0.49);
+  }
+  
+  .character-item {
+    background: white;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .character-item a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .character-item a:hover {
+    text-decoration: underline;
+  }
+  
+  .no-characters {
+    color: #999;
+    text-align: center;
+  }
+  
+  .create-character {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-top: 20px;
+  }
+  
+  .create-character:hover {
+    background-color: #0056b3;
+  }
+
+  .link {
+    background: #eaff00;
+  }

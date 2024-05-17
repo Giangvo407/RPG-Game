@@ -34,18 +34,20 @@ router.post('/', async (req, res) => {
 
         const monster = await Monster.findOne({ rarity: selectedRarity });
         if (!monster) {
-            return res.status(404).send('Monster not found');
+            return res.redirect('/select-character');
         }
+        req.session.localMonHP = monster.minHitPoints
         const battleLog = [];
-        const typeInventory = character.inventory.map((inventory) => inventory.type);
+        const typeInventory = character.inventory[0];
+        
         res.render('./characters/battle', { character, monster, typeInventory, battleLog });
     } catch (err) {
-        console.error(err);
         res.status(500).send('Internal Server Error');
     }
 });
 
 router.post('/attack', async (req, res) => {
+    console.log('app hp', req.session.localMonHP)
     try {
         const { characterId, monsterId } = req.body;
 
@@ -53,23 +55,19 @@ router.post('/attack', async (req, res) => {
 
         const character = await Character.findById(characterId);
         const monster = await Monster.findById(monsterId);
-        const typeInventory = character.inventory.map((inventory) => {
-            return inventory.type
-        });
+        const typeInventory = character.inventory[0];
 
         if (character.minHitPoints <= 0) {
             battleLog.push('You cannot attack when you are defeated!');
             return res.render('./characters/battle', { character, monster: null, battleLog, typeInventory });
         }
 
-        const originalMonsterHitPoints = monster.hitPoints;
-
         const characterDamage = Math.floor(Math.random() * character.strength) + 1;
-        monster.hitPoints -= characterDamage;
+        monster.minHitPoints -= characterDamage;
 
         battleLog.push(`You attacked ${monster.name} and dealt ${characterDamage} damage.`);
-
-        if (monster.hitPoints <= 0) {
+    
+        if (monster.minHitPoints <= 0) {
             character.exp += monster.exp;
             if (monster.loot) {
                 character.inventory.push(monster.loot);
@@ -79,9 +77,7 @@ router.post('/attack', async (req, res) => {
             }
 
             battleLog.push(`You defeated ${monster.name}!`);
-
-            monster.hitPoints = originalMonsterHitPoints;
-
+            monster.minHitPoints = req.session.localMonHP
             await character.save();
             await monster.save();
 
@@ -94,53 +90,53 @@ router.post('/attack', async (req, res) => {
             if (character.minHitPoints <= 0) {
                 character.gold = Math.floor(character.gold * 0.5);
                 await character.save();
-                
                 battleLog.push('You were defeated by the monster!');
-
                 res.render('./characters/battle', { character, monster: null, battleLog, typeInventory });
             } else {
                 await character.save();
+                await monster.save();
                 res.render('./characters/battle', { character, monster, battleLog, typeInventory }); 
             }
         }
     } catch (err) {
-        console.error(err);
         res.status(500).send('Internal Server Error');
     }
 });
 
 router.post('/heal', async (req, res) => {
     try {
-        const { characterId, healingPower } = req.body;
+        const { characterId, monsterId, healingPower } = req.body;
         const character = await Character.findById(characterId);
-        const currentMonster = await Monster.findById(monsterId);
+        const monster = await Monster.findById(monsterId);
+        const battleLog = [];
 
-        let newHitPoints = character.minHitPoints +(healingPower);
+        let newHitPoints = character.minHitPoints + parseInt( healingPower );
         
         if (newHitPoints > character.maxHitPoints) {
             newHitPoints = character.maxHitPoints;
         }
         character.minHitPoints = newHitPoints;
+        
         await character.save();
 
-        const typeInventory = character.inventory.map((inventory) => {
-            return inventory.type
-        })
-        battleLog.push(`Character used ${potion.name} (Heal ${potion.healingPower} HP)!`);
+        const typeInventory = character.inventory[0];
+        battleLog.push(`Character used ${typeInventory.name} (Heal ${typeInventory.healingPower} HP)!`);
         
-        res.render('./characters/battle', {character, monster: currentMonster, typeInventory}); 
+        res.render('./characters/battle', {character, typeInventory, battleLog, monster}); 
     } catch (err) {
-        console.error(err);
         res.status(500).send('Internal Server Error');
     }
 });
 
-// POST route for fleeing
 router.post('/flee', async (req, res) => {
     try {
+        const monster = await Monster.findById(req.body.monsterId);
+        if (monster) {
+            monster.minHitPoints = req.session.localMonHP
+            await monster.save()
+        };
         res.redirect('/characters');
     } catch (err) {
-        console.error(err);
         res.status(500).send('Internal Server Error');
     }
 });

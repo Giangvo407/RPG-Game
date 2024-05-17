@@ -18,6 +18,14 @@
             <input type="number" id="strength" name="strength" value="<%= monster.strength %>" required>
         </div>
         <div>
+            <label for="maxHitPoints">Max Hit Points:</label>
+            <input type="number" id="maxHitPoints" name="maxHitPoints" value="<%= monster.maxHitPoints %>" required>
+        </div>
+        <div>
+            <label for="minHitPoints">Min Hit Points:</label>
+            <input type="number" id="minHitPoints" name="minHitPoints" value="<%= monster.minHitPoints %>" required>
+        </div>
+        <div>
             <label for="defense">Defense:</label>
             <input type="number" id="defense" name="defense" value="<%= monster.defense %>" required>
         </div>
@@ -53,7 +61,7 @@
         </div>
         <div>
             <label for="imageUrl">Image URL:</label>
-            <input type="text" id="imageUrl" name="imageUrl">
+            <input type="text" id="imageUrl" name="imageUrl" <%= monster.imageUrl %>>
         </div>
         <button type="submit">Update</button>
     </form>

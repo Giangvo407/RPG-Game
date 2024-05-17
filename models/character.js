@@ -12,7 +12,7 @@ const characterSchema = new mongoose.Schema({
     inventory:  [ {type: Schema.Types.ObjectId, ref: 'Inventory' } ],
     equippedWeapon: { type: Schema.Types.ObjectId, ref: 'Inventory' },
     equippedArmor: { type: Schema.Types.ObjectId, ref: 'Inventory' },
-    imageUrl: { type: String },
+    imageUrl: { type: String, default: 'https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExY2kxMTE0YzFzcm14cGU3YzhkdDVjbmFucXo1Y2lzMnl2emxjc3A4MCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/t8e74BIE4MWjrcbTI1/giphy.gif'},
     owner: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
@@ -24,13 +24,5 @@ const characterSchema = new mongoose.Schema({
         },
     ]
   });
-  
-  // calculate level based on experience points
-  characterSchema.methods.calculateLevel = function () {
-    const expNeeded = 100;
-    const currentExp = this.experience;
-    const currentLevel = Math.floor(currentExp / expNeeded) + 1;
-    return currentLevel;
-  };
   
   module.exports = mongoose.model('Character', characterSchema);

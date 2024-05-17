@@ -2,15 +2,12 @@ const express = require('express')
 const router = express.Router()
 const User = require('../models/user.js');
 
-// Routes
 
-// Index
 router.get('/', async (req, res) => {
      let users = await User.find()
      res.render('users/index', { users: users })
 })
 
-// Show
 router.get('/:userId', async (req, res) => {
      try {
           otherUser = await User.findById(req.params.userId)

@@ -1,15 +1,18 @@
-<nav>
+<link rel="stylesheet" href="/css/main.css">
+<nav id="nav">
     <a href="/">Home</a>
-    <a href="/monsters">Monsters</a>
-    <a href="/inventorys">Inventory</a>
-    <a href="/shops">Shop</a>
-    <a href="/characters">AllCharacters</a>
-    <a href="/select-character">select</a>
     <% if (user && user.isAdmin) { %>
-        <a href="/battle">Battle</a>
+        <a href="/monsters">Monsters' Index</a>
+        <a href="/inventorys">Inventory Index</a>
+        <a href="/characters">Player's Index</a>
+        <a href="/select-character">Select Player</a> 
         <a href="/auth/sign-out">Sign Out</a>
         <a href="/admins">Admin</a>
     <% } else if(user) { %>
+        <a href="/monsters">Monsters</a>
+        <a href="/inventorys">Inventory</a>
+        <a href="/characters">AllCharacters</a>
+        <a href="/select-character">select</a>
         <a href="/battle">Battle</a>
         <a href="/auth/sign-out">Sign Out</a>
     <% } else { %>

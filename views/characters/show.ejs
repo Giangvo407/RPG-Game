@@ -12,7 +12,8 @@
 
     <h1><%= character.name%>'s Status</h1>
 
-    <!-- character Details -->
+    <img src="<%= character.imageUrl %>" alt="Character image"></img>
+
     <h2>Details</h2>
     <p>Strength: <%= character.strength %></p>
     <p>Defense: <%= character.defense %></p>
@@ -30,7 +31,6 @@
     <% } %></p>
     <p>Level: <%= character.level %></p>
 
-    <!-- Favoriting Details -->
     <h2>Favorites</h2>
     <p>Favorited by <%= character.favoritedByUsers.length %> people.</p>
     <% if (userHasFavorited) { %>
@@ -45,13 +45,11 @@
     </form>
     <% } %>
 
-    <a href="/battle">to battle</a>
-
-    <!-- Owner Details -->
     <h2>Owner</h2>
     <% if (character.owner._id.equals(user._id)) { %>
     <p>You own this!</p>
     <a href="/characters/<%= character._id %>/edit">Edit this character</a>
+
     <form action="/characters/<%= character._id %>?_method=DELETE" method="POST">
         <button type="submit">Delete this character</button>
     </form>

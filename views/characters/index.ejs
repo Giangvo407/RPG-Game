@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>All Characters</title>
+    <link rel="stylesheet" href="/css/main.css">
 </head>
 
 <body>
@@ -12,23 +13,21 @@
 
     <h1>Here's all the Characters</h1>
 
-    <ul>
+    <ul class="character-list">
         <% if (characters.length > 0) { %>
             <% characters.forEach((character) => { %>
-                <li>
+                <li class="character-item">
                     A <%= character.name %> is owned by
                     <a href="/characters/owner/<%= character.owner._id %>"><%= character.owner.username %></a>. |
                     <a href="/characters/<%= character._id %>">View more details.</a>
                 </li>
             <% }) %>
         <% } else { %>
-            <li>No characters found.</a>.</li>
+            <li class="no-characters">No characters found.</li>
         <% } %>
     </ul>
 
-    <a href="/characters/new">Create a new character</a>
-    <br>
-
+    <a href="/characters/new" class="create-character">Create a new character</a>
 </body>
 
 </html>

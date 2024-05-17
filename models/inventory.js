@@ -8,7 +8,7 @@ const InventorySchema = new Schema({
   defenseModifier: { type: Number, default: 0 },
   isEquipped: { type: Boolean, default: false },
   healingPower: { type: Number, default: 0 },
-  imageUrl: { type: String }
+  imageUrl: { type: String },
 });
 
 module.exports = mongoose.model('Inventory', InventorySchema);

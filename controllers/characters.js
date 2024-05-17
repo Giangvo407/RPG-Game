@@ -1,27 +1,12 @@
-
-/* 
----------------------------------------------------------------------------------------
-NOTE: Remember that all routes in this file are prefixed with `localhost:3000/characters`
----------------------------------------------------------------------------------------
-*/
-
-
-/* Import packages and models
--------------------------------------------------- */
 const Character = require('../models/character.js');
 const express = require('express');
 const router = express.Router();
 
-
-/* Routes
--------------------------------------------------- */
-// Index route: Display all characters
 router.get('/', async (req, res) => {
     const allCharacters = await Character.find().populate('owner')
     res.render('characters/index', { characters: allCharacters })
 })
 
-// Index route: Display all characters for a specific user
 router.get('/owner/:userId', async (req, res) => {
     const userCharacter = await Character
         .find({ owner: req.params.userId })
@@ -29,12 +14,10 @@ router.get('/owner/:userId', async (req, res) => {
     res.render('characters/index', { characters: userCharacter })
 })
 
-// New route
 router.get('/new', (req, res) => {
     res.render('characters/new')
 })
 
-// Show route
 router.get('/:characterId', async (req, res) => {
     try {
         const foundCharacter = await Character
@@ -48,33 +31,27 @@ router.get('/:characterId', async (req, res) => {
             userHasFavorited: userHasFavorited
         })
     } catch (error) {
-        console.log(error)
         res.redirect('/characters')
     }
 })
 
-// Create route
+
 router.post('/', async (req, res) => {
     req.body.owner = req.session.user._id
     await Character.create(req.body)
-    console.log('characters')
     res.redirect('/characters')
 })
 
-// Delete route
 router.delete('/:characterId', async (req, res) => {
     await Character.findByIdAndDelete(req.params.characterId)
     res.redirect('/characters')
 })
 
-// Edit route
 router.get('/:characterId/edit', async (req, res) => {
     const foundCharacter = await Character.findById(req.params.characterId)
-
     res.render('characters/edit', { character: foundCharacter})
 })
 
-// Put route
 router.put('/:characterId', async (req, res) => {
     const updatedCharacter = await Character.findByIdAndUpdate(
         req.params.characterId,
@@ -87,7 +64,6 @@ router.put('/:characterId', async (req, res) => {
     res.render('characters/show', { character: updatedCharacter, userHasFavorited: userHasFavorited})
 })
 
-// Favoriting route
 router.post('/:characterId/favorited-by/:userId', async (req, res) => {
     try {
         const foundCharacter = await Character.findById(req.params.characterId);
@@ -95,12 +71,10 @@ router.post('/:characterId/favorited-by/:userId', async (req, res) => {
         await foundCharacter.save();
         res.redirect(`/characters/${req.params.characterId}`);
     } catch (error) {
-        console.log(error);
         res.redirect('/characters');
     }
 });
 
-// Unfavoriting route
 router.delete('/:characterId/favorited-by/:userId', async (req, res) => {
     try {
         await Character.findByIdAndUpdate(req.params.characterId, {
@@ -108,11 +82,8 @@ router.delete('/:characterId/favorited-by/:userId', async (req, res) => {
         });
         res.redirect(`/characters/${req.params.characterId}`);
     } catch (error) {
-        console.log(error);
         res.redirect('/characters');
     }
 });
 
-/* Export these routes so that they are accessible in `server.js`
--------------------------------------------------- */
 module.exports = router;

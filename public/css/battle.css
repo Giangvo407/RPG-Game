@@ -1,0 +1,87 @@
+
+body {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    background-color: black;
+    background-image: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/3fffe330-0a41-49ed-9885-6e3aba462e70/ddxkac6-ebe2ffce-8080-4ebf-b301-598019f384b0.png/v1/fill/w_1264,h_632,q_70,strp/forest_of_pixels_by_bunnsp_ddxkac6-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9OTAwIiwicGF0aCI6IlwvZlwvM2ZmZmUzMzAtMGE0MS00OWVkLTk4ODUtNmUzYWJhNDYyZTcwXC9kZHhrYWM2LWViZTJmZmNlLTgwODAtNGViZi1iMzAxLTU5ODAxOWYzODRiMC5wbmciLCJ3aWR0aCI6Ijw9MTgwMCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.MzW32HMHMAiGPKa0hKe9lplA2-MZuYfJAZB3yHJVecc');
+    background-size: cover;
+    background-repeat: no-repeat;
+    color:black;
+}
+
+.imgChar {
+    grid-column: 2;
+}
+
+.imgMon {
+    grid-column: 3;
+}
+
+#character-status {
+    grid-column: 1; 
+}
+
+#battle-log {
+    grid-column: 2; 
+}
+
+#monster-status {
+    grid-column: 3; 
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    color: rgb(17, 7, 7);
+    background-color: rgba(61, 194, 97, 0.49);
+    text-align: center;
+}
+
+#character-status {
+    background-color: rgba(61, 194, 97, 0.49);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+#monster-status {
+    background-color: rgba(61, 194, 97, 0.49);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+button {
+    background-color: black;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+label{
+    background-color: rgba(61, 194, 97, 0.49);
+}
+
+#battle-log {
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+}

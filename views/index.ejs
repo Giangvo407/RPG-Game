@@ -7,18 +7,21 @@
 </head>
 <body>
   <%- include('./partials/_navbar.ejs') %>
+
   <% if (user) { %>
     <h1>Welcome to the RPG Game, <%= user.username %>!</h1>
+    <h2> Once upon a time, a lost kitten wandered far from home, chasing a glowing butterfly. he stumbled upon an ancient stone archway hidden in a forgotten garden. As the kitten approached, the archway shimmered and opened into a swirling, magical portal. </h2>
     <p>
       <a href="/auth/sign-out">Sign out</a>
     </p>
   <% } else { %>
     <h1>Welcome to the app, guest.</h1>
+    <h2> Once upon a time, a lost kitten wandered far from home, chasing a glowing butterfly. he stumbled upon an ancient stone archway hidden in a forgotten garden. As the kitten approached, the archway shimmered and opened into a swirling, magical portal. </h2>
     <p>
       <a href="/auth/sign-up">Sign up</a> or
       <a href="/auth/sign-in">Sign in</a>.
     </p>
   <% } %>
-  <p><a href="/admin">Get into the VIP Users Only lounge!</a></p>
+  
 </body>
 </html>

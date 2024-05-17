@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Battle</title>
+    <link href="/css/battle.css" rel="stylesheet" type="text/css">
 </head>
 <body>
     <h1>Battle</h1>
@@ -13,11 +14,19 @@
         <p>Experience: <%= character.exp %></p>
         <p>HP: <%= character.minHitPoints %></p>
     </div>
+
     
+
+    <div id="battle-log">
+        <% battleLog.forEach(entry => { %>
+            <p><%= entry %></p>
+        <% }); %>
+    </div>
+
     <% if (monster) { %>
         <div id="monster-status">
             <p>Monster Name: <%= monster.name %></p>
-            <p>Monster HP: <%= monster.hitPoints %></p>
+            <p>Monster HP: <%= monster.minHitPoints %></p>
             <p>Monster Strength: <%= monster.strength %></p>
             <p>Monster Defense: <%= monster.defense %></p>
         </div>
@@ -33,12 +42,14 @@
         
         <form action="/battle/heal" method="POST">
             <input type="hidden" name="characterId" value="<%= character._id %>">
-            <label for="potion">Select Potion:</label>
-            <select id="potion" name="potion">
-                <% if (typeInventory.length > 0) { %>
-                <% typeInventory.forEach(potion => { %>
-                    <option value="<%= potion._id %>"><%= potion.name %> (Heal <%= potion.healingPower %> HP)</option>
-                <% })} else { %>
+            <% if (monster) { %>
+                <input type="hidden" name="monsterId" value="<%= monster._id %>">
+            <% } %>
+            <label class="selectPotion" for="healingPower">Select Potion:</label>
+            <select id="healingPower" name="healingPower">
+                <% if (typeInventory) { %>
+                    <option value=<%= typeInventory.healingPower %>>(Heal <%= typeInventory.healingPower %> HP)</option>
+                <% }else { %>
                 <option value= 'no potion'> - </option>
                 <% }; %>
             </select>
@@ -53,10 +64,14 @@
             <button type="submit">Flee</button>
         </form>
     </div>
-    <div id="battle-log">
-        <% battleLog.forEach(entry => { %>
-            <p><%= entry %></p>
-        <% }); %>
+    
+    <div class="imgChar">
+        <img src="<%= character.imageUrl %>" id="characterImg" alt="Character image"></img>
+        <% if (monster) { %>
+    </div>
+    <div class=""imgMon>
+        <img src="<%= monster.imageUrl %>" id="monsterImg" alt="Monster image"></img>
+        <% } %>
     </div>
     
 </body>

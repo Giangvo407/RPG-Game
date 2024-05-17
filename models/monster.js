@@ -3,7 +3,8 @@ const Schema = mongoose.Schema;
 
 const monsterSchema = new mongoose.Schema({
     name: { type: String, required: true },
-    hitPoints: { type: Number, required: true },
+    maxHitPoints: { type: Number, required: true },
+    minHitPoints: { type: Number, required: true },
     strength: { type: Number, required: true },
     defense: { type: Number, required: true },
     experience: { type: Number, required: true },

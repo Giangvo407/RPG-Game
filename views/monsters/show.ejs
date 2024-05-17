@@ -11,21 +11,20 @@
     <%- include('../partials/_navbar.ejs') %>
 
     <h1><%= monster.rarity %> <%= monster.name%>'s Status</h1>
-
-    <!-- monster Details -->
     <h2>Details</h2>
         <p>Strength: <%= monster.strength %></p>
-        <p>Hit Points: <%= monster.hitPoints %></p>
+        <p>Hit Points: <%= monster.maxHitPoints %></p>
         <p>Defense: <%= monster.defense %></p>
         <p>Experience: <%= monster.experience %></p>
         <p>Location: <%= monster.location %></p>
+        <img src="<%= monster.imageUrl %>" alt="Monster image"></img>
         
 
         <form action="/admins/monsters/<%= monster._id %>?_method=DELETE" method="POST">
         <button type="submit">Delete this monster</button>
         </form>
         <br>
-        <a href="/admins/monsters/<%= monster._id %>/edit">Edit this monster</a>
+        <a class="link" href="/admins/monsters/<%= monster._id %>/edit">Edit this monster</a>
         
     
 </body>
