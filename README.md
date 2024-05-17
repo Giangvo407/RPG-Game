@@ -2,7 +2,17 @@ RPG Game  ![cat](https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExY2kxMTE0YzFzc
 ===================================================================================
 
 ### Intro:
-    Once upon a time, a lost kitten wandered far from home, chasing a glowing butterfly. he stumbled upon an ancient stone archway hidden in a forgotten garden. As the kitten approached, the archway shimmered and opened into a swirling, magical portal.
+    Once upon a time, a lost 
+    kitten wandered far from 
+    home, chasing a glowing 
+    butterfly. he stumbled 
+    upon an ancient stone 
+    archway hidden in a 
+    forgotten garden. As the 
+    kitten approached, the 
+    archway shimmered and 
+    opened into a swirling, 
+    magical portal.
 
 
  ScreenShots:
